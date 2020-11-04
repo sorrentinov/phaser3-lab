@@ -66,7 +66,8 @@ export default class MainScene extends Phaser.Scene {
     // Is mouse click down?    
     if (this.input.activePointer.isDown) {
       // move player along the x-axis at a rate this.speed pixels
-      this.player?.setX(this.speed);
+      const speed = this.speed as number;
+      if (this.player) this.player.x += speed;
     }
           
     if (this.lives && this.player && this.dragon && Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), this.dragon.getBounds())) {            
@@ -74,15 +75,30 @@ export default class MainScene extends Phaser.Scene {
       this.liveText?.setText(`Lives: ${this.lives}`)
       this.end()
     }
-    
-    if (this.score && this.player && this.gold && Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), this.gold.getBounds())) {
-      this.score +=50;
-      this.scoreText?.setText(`Score: ${this.score}`);
-      this.end();
+        
+    if (this.score != undefined && this.player && this.gold && Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), this.gold.getBounds())) {
+      this.score +=50
+      this.scoreText?.setText(`Score: ${this.score}`)
+      this.end()
     }
+
+    if(this.dragon && this.dragon.y >= 500) {
+      // Go up
+      this.dragon_move = -1;
+    } else if(this.dragon && this.dragon.y <= 100) {
+      // Go down
+      this.dragon_move = 1;
+    }
+  
+    if (this.dragon && this.dragon_move)  this.dragon.y += this.dragon_move;
 
   }
 
   end() {
+    if(this.lives && this.lives <= 0) {
+      this.scene.restart();
+    } else {
+      this.create();
+    }
   }
 }
