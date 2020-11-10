@@ -1,0 +1,27 @@
+{
+  "name": "phaser3-lab",
+  "version": "1.0.0",
+  "description": "This is a laboratory to experiment phaser3 game framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sorrentinov/phaser3-lab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sorrentinov/phaser3-lab/issues"
+  },
+  "homepage": "https://github.com/sorrentinov/phaser3-lab#readme",
+  "dependencies": {
+    "phaser": "^3.24.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^4.0.5"
+  }
+}
